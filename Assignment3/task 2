@@ -1,0 +1,57 @@
+/*
+ *Function: Finding_different_values_of_string
+ *----------------
+ * Returns number of upper cases, lower cases, numbers, and special characters. 
+ * 
+ * string of anything is asked from the user
+ * 
+ * upper: char values from A to Z
+ * lower: char values from a to z
+ * numbers: int numerical containing 0 to 9 and else
+ * specials: values that vary as in $% and etc.
+ * 
+ * returns: quantity of upper, lower, numbers, and special characters from the user string 
+ */
+  
+
+#include <stdio.h>
+#include <string.h>
+
+void CasesFinder(char*S)
+{
+  int upper = 0;
+  int lower = 0;
+  int numbers = 0;
+  int specials = 0;
+  
+  for (int i = 0; i < strlen(S); i++) 
+  {
+    char c = S[i];
+    if (c >='A' && c <='Z')
+      upper++;
+    else if (c >='a' && c <='z')
+      lower++;
+    else if(S[i]>='0' && S[i]<='9')
+    {
+      numbers++;
+    }
+    else
+      specials++;
+    
+  }  
+  printf("Upper case letters: %d\n", upper);
+  printf("Lowercase letters: %d\n", lower);
+  printf("Numbers: %d\n", numbers);
+  printf("Special characters: %d\n", specials);
+}
+
+int main(void)
+{
+  char stringy[40];
+  
+  printf("Enter the string: ");
+  scanf("%s", stringy);
+
+  CasesFinder(stringy);
+}
+

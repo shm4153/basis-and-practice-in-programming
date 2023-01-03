@@ -1,0 +1,57 @@
+/*
+ *Function: Adding_matrices
+ *----------------
+ * Returns addition of two matrices
+ * 
+ * number of rows is asked
+ * number of columns is asked
+ * 
+ * matrix 1
+ * matrix 2
+ * 
+ * returns: additions of two matrices
+ */
+  
+
+#include <stdio.h>
+
+// orders an array from smallest to largest out of what the user inputs of 5 numbers
+void Arranger(int N[5])
+{
+    int length = 5;
+    for (int i = 0; i < length; i++)
+    {
+        for (int j = 0; j < length; j++)
+        {
+            if (N[j] > N[i]) 
+            {
+                int tmp = N[i]; 
+                N[i] = N[j];    
+                N[j] = tmp;    
+            }
+        }
+    }
+  
+    printf("The result: ");        
+    for (int i = 0; i < length; i++)
+    {
+        printf(" %d", N[i]);
+    }
+}
+
+//asks the user to enter elemenrs of an array and then prints from smallest to largest order of an array 
+int main()
+{
+    int size = 5;
+    int i, j;
+    int a[5];
+  
+    printf("Enter the elements of the array: ");
+    for (i = 0; i < size; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+    Arranger(a);
+
+    return 0; 
+}
