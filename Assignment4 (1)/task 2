@@ -1,0 +1,70 @@
+/*
+ *Function: Finding_Time_Differences
+ *----------------
+ * Returns difference of two times in seconds
+ * 
+ * hours: one value of real numbers
+ * minutes: one value of real numbers 
+ * seconds: one value of real numbers
+ * 
+ * 
+ * 
+ * 
+ * returns: diffference of two times in seconds
+ */
+
+
+#include <stdio.h>
+
+struct TIME {
+  int hours;
+  int minutes;
+  int seconds;
+};
+
+void timeDiff(struct TIME startT, struct TIME endT);
+
+int main(void) 
+{
+  struct TIME startT, endT, result; 
+  
+
+  printf("Enter starting time: \n");
+  printf("hours:");
+  scanf("%d", &startT.hours);
+  printf("minutes: ");
+  scanf("%d", &startT.minutes);
+  printf("seconds: ");
+  scanf("%d", &startT.seconds);
+
+  printf("Enter ending time: \n");
+  printf("hours: ");
+  scanf("%d", &endT.hours);
+  printf("minutes ");
+  scanf("%d", &endT.minutes);
+  printf("seconds: ");
+  scanf("%d", &endT.seconds);
+  timeDiff(startT, endT);
+  
+  return 0;
+}
+
+// differentiates thes values of two times
+void timeDiff(struct TIME startT, struct TIME endT)
+{
+  int fin, t1, t2;
+  t1 = (startT.hours*3600) + (startT.minutes*60) + startT.seconds;
+  t2 = (endT.hours*3600) + (endT.minutes*60) + endT.seconds;
+  
+  if (t1 > t2) // checks which time is bigger
+  {
+    fin = t1-t2;
+  }
+    
+  else
+  {
+    fin = t2-t1; // if second time bigger 1st value subtracts
+  }
+  
+  printf("Time difference: %d:%d:%d - %d:%d:%d= %d seconds", startT.hours, startT.minutes, startT.seconds, endT.hours, endT.minutes, endT.seconds, fin);
+}

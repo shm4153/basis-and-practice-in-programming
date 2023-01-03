@@ -1,0 +1,99 @@
+/*
+ *Function: Getting_employees_salary_info
+ *----------------
+ * Returns information of smallest and largest employee salary 
+ * 
+ * ID, name, and salary is asked
+ * 
+ * 
+ * 
+ * 
+ * returns: maximum and minimum salary of four employees
+ */
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+struct employee 
+{
+  int ID;
+  char name[35];
+  int Salary; 
+};
+
+struct employee emp[4];
+
+void scan(struct employee []);
+
+int minimum(struct employee emp[]);
+int maximum(struct employee emp[]);
+//int maximum(struct employee emp[], int n);
+
+
+int main(void) 
+{
+  scan(emp);
+  printf("Total amount of money for employees: \n");
+  printf("\n");
+  maximum(emp);
+  minimum(emp);
+  
+  return 0; 
+}
+
+//asks information of ID, Name, and Salary of employees with scanf
+void scan(struct employee emp[])
+{
+  int i;
+  
+  for (i = 0; i < 4; i++)
+  {
+    printf("ID: ");
+    scanf("%d", &emp[i].ID);
+    printf("Name: ");
+    scanf("%s", emp[i].name);
+    printf("Salary: ");
+    scanf("%d", &emp[i].Salary); 
+  }
+}
+
+// finds the employee with the smallest salary 
+int minimum(struct employee emp[])
+{
+  int j;
+  float mini = 1000000000000000;
+  int countr1;
+  for(j = 0; j<4; j++){
+    if(mini > emp[j].Salary){
+      mini = emp[j].Salary;
+      countr1 = j;
+    }
+  }
+  
+  printf("\n");
+  printf("Minimum Salary:\n");
+  printf("ID: %d\n", emp[countr1].ID);
+  printf("Name: %s\n", emp[countr1].name);
+  printf("Salary: %d\n\n", emp[countr1].Salary); 
+  
+}
+
+// finds the employee with the laster salary 
+int maximum(struct employee emp[])
+{
+  int i;
+  float maxi = 0;
+  int countr2;
+  for(i = 0; i<4; i++){
+    if(maxi <emp[i].Salary){
+      maxi = emp[i].Salary;
+      countr2 = i;
+    }
+  }
+  printf("Maximum Salary: \n");
+  printf("ID: %d\n", emp[countr2].ID);
+  printf("Name: %s\n", emp[countr2].name);
+  printf("Salary: %d\n\n", emp[countr2].Salary);  
+  
+}
+  

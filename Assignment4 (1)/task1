@@ -1,0 +1,66 @@
+
+/*
+ *Function: Adding_matrices
+ *----------------
+ * Returns addition of two matrices
+ * 
+ * rows: number of rows is asked
+ * columns: number of columns is asked
+ * 
+ * matrix 1
+ * matrix 2
+ * 
+ * returns: additions of two matrices
+ */
+  
+#include <stdio.h>
+
+void addMatrices(int rows, int columns, int a[10][10], int b[10][10]);
+
+int main(void)
+{
+  int c, d, a[10][10], b[10][10], total[10][10], rows, columns;
+  
+  //Asks the number of rows for the matrices
+  printf("Enter number of rows: \n");
+  scanf("%d", &rows);
+  //ASks the number of columns for the matrices
+  printf("Enter number of columns: \n");
+  
+  scanf("%d", &columns);
+
+  // Asks the user for the first matrix numbers
+  printf("Enter first matrix:\n");
+   for (c = 0; c < rows; c++)
+      for (d = 0 ; d < columns; d++)
+         scanf("%d", &a[c][d]);
+  
+// Asks the user for the second matrix nubmers
+  printf("Enter second matrix: \n");
+   for (c = 0; c < rows; c++)
+      for (d = 0 ; d < columns; d++)
+         scanf("%d", &b[c][d]);
+  
+  printf("Addition of the matrices: \n");
+  addMatrices(rows, columns, a, b);
+
+  return 0;
+}
+
+
+void addMatrices(int rows, int columns, int a[10][10], int b[10][10])
+{
+  int c, d;
+  int total[10][10];
+  // Gives back the total of two matrices
+  for (c=0; c<rows; c++) // goes into rows 
+  {
+    for (d=0; d<columns; d++) // goes into columns
+    {
+      *(*(total+c)+d)= (*(*(a+c)+d))+(*(*(b+c)+d));
+      printf("%d\t", total[c][d]);
+    }
+    printf("\n");
+  }
+  
+}
