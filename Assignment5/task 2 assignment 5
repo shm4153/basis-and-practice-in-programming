@@ -1,0 +1,86 @@
+/*
+ * Function: counts_occurences_characters
+ * -------------------
+ * Returns the number of occurences of characters in a file
+ *
+ * fp: file pointer
+ * word: the word to find
+ *
+ * returns: the number of times a word was repeated in a file
+ */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int countLetter(FILE *fp, char cn, int r);
+
+int main()
+{
+  
+  FILE *fp;
+  char filename[50], c;
+
+  // gets user to name the file 
+  printf("Enter filename: "); 
+  scanf("%s", filename);
+  
+  // Open file named by user for reading
+  fp = fopen(filename,"r") ;
+
+  // checks if the file opens well
+  if (fp == NULL) 
+  {
+    printf("Can't open file %s \n", filename);
+    exit(1);
+  }
+
+  //counts the number of lines in a program 
+  
+  countLetter(fp, 0, 0);
+  fclose(fp);
+  
+  return 0;
+}
+
+// counts the number of letters in a file  
+int countLetter(FILE *fp, char cn, int r)
+{
+  int c;
+  int l[20];
+  int f;
+  int em;
+  while((c=getc(fp))!=EOF)
+  {
+    cn++;
+    if(c==';')
+    {
+      r++;
+      printf("\nRow %d: there are %d letters\n", r, cn);
+      l[r-1]=cn;
+      cn=0;
+      f=1;
+    }
+  
+    if(c=='\n')
+    {
+      if(f==1)
+      {
+        f=0;
+        cn--;
+      }
+  
+      else{
+        if((cn-1)==0)
+          em++;
+        r++;
+        printf("\nRow %d: there are %d letters\n",r,(cn-1));
+        l[r-1]=cn-1;
+        cn=0;
+      }
+    }
+  }
+  
+}  
+  
+  

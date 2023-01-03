@@ -1,0 +1,87 @@
+/*
+ * Function: counts_occurences_characters
+ * -------------------
+ * Returns the number of occurences of characters in a file
+ *
+ * fp: file pointer
+ * word: the word to find
+ *
+ * returns: the number of times a word was repeated in a file
+ */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/* Function declarations */
+int countOccurrences(FILE *fp, const char *word);
+
+
+int main()
+{
+    FILE *fp;
+    char filename[100];
+
+    char word[50];
+
+    int counter;
+
+    // makes user to name a file 
+    printf("Enter filename: ");
+    scanf("%s", filename);
+
+    // makes user to enter a word 
+    printf("Enter a word: ");
+    scanf("%s", word);
+
+    // checks if the file opens well
+    fp = fopen(filename, "r");
+
+    /* Exit if file not opened successfully */
+    if (fp == NULL)
+    {
+        printf("Can't open file.\n");
+
+        exit(0);
+    }
+
+    // Call function to count all occurrence of word
+    counter = countOccurrences(fp, word);
+
+    printf("There is %d occurence of the word \"%s\"", counter, word);
+    fclose(fp);
+
+    return 0;
+}
+
+
+
+int countOccurrences(FILE *fp, const char *word)
+{
+    char str[1000];
+    char *position;
+
+    int index, count;
+    
+    count = 0;
+
+    // goes to file to find word 
+    while ((fgets(str, 1000, fp)) != NULL)
+    {
+        index = 0;
+
+        // Find next occurrence of word in str
+        while ((position = strstr(str + index, word)) != NULL)
+        {
+            // Index of word in str is
+            // Memory address of pos - memory
+            // address of str.
+            index = (position - str) + 1;
+
+            count++;
+        }
+    }
+
+    return count;
+}

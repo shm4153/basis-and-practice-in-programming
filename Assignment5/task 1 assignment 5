@@ -1,0 +1,61 @@
+ /* Function: making_file_copy 
+  * -----------------
+  * Returns a copy of the file 
+  *
+  * filename: represents file name 
+  * c: represents characters 
+  *
+  * returns: returns a new made file
+  * and a copy of a file 
+  */
+  
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+  
+  FILE *fptr1, *fptr2;
+  char filename[50], c;
+  
+  printf("Enter filename: "); // gets user to name the file 
+  scanf("%s", filename);
+  
+  // Open one file for reading
+  fptr1 = fopen(filename,"r") ;
+  
+  if (fptr1 == NULL) // test for succesful open of file 
+  {
+    printf("Can't open file %s \n", filename);
+    exit(1);
+  }
+  
+  printf("Enter the filename for copying the content: \n");
+  scanf("%s", filename);
+  
+  // Open another file for writing
+  fptr2 = fopen(filename,"w");
+
+
+  
+  if (fptr2 == NULL) // test for successful open for file 
+  {
+    printf ("Cannot open file %s \n", filename);
+    exit(1);  
+  }
+  
+  // Read the content in the file
+  c = fgetc(fptr1);
+  while (c != EOF)
+  {
+    fputc(c, fptr2);
+    c = fgetc(fptr1);
+  }
+
+  printf("The copy of the file example.txt is created with the name: %s", filename);
+  
+  fclose(fptr1);
+  fclose(fptr2);
+  return 0;
+  
+}
